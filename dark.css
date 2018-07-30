@@ -1,0 +1,29 @@
+:root {
+  --near-black: #111111;
+  --near-white: #F4F4F4;
+  --gray: #777777;
+  --light-gray: rgb(190, 190, 190);
+
+  --blue: #357EDD;
+  --light-blue: #96CCFF;
+
+  --slide-background-color: var(--near-black);
+  --slide-text-color: var(--near-white);
+}
+
+body {
+  color: var(--slide-text-color);
+}
+
+h2 {
+  color: var(--light-gray);
+}
+
+a {
+  color: var(--light-blue);
+  text-decoration: none;
+}
+
+.remark-slide-content {
+  background-color: var(--slide-background-color)
+}

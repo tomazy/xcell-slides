@@ -4,7 +4,6 @@ class: center, middle
 
 ## Tomek Maszkowski, @tomazy
 
-
 ???
 
 Hi everyone!
@@ -20,7 +19,7 @@ class: center, middle
 
 ???
 
-Long time ago (in the 20th century) I was hired to port a MS DOS accounting software to Windows 98.
+In my first job we were porting a MS DOS accounting application to Windows 98.
 
 One of the assignments was to create interactive, WYSIWYG forms for tax return purposes.
 
@@ -50,7 +49,7 @@ class: center, middle
 
 ???
 
-Then not so long time ago (2013), as a member of a small team, I was hired by an HR company in Singapore to build a payroll system.
+A few years back (2013), as a member of a small team, I was hired by an HR company in Singapore to build a payroll system.
 
 To see if we're capable of understanding the requirements, they asked us first to create a payroll calculator that they could test their corner cases with.
 
@@ -73,11 +72,13 @@ class: center, middle
 
 Writing both programs was difficult.
 
+We had to implement tons of rules defined by the law.
+
+The rules would sometimes change. Occasionally a few times in a year and our programs would have to adapt accordingly.
+
 At the heart of these programs there would be one function/method that would accept all the parameters, process them, and return another universe.
 
 It was hard to keep the whole logic of the calculations in head.
-
-It was hard to review the code.
 
 It was hard to maintain it.
 
@@ -93,23 +94,15 @@ _my code_
 ---
 class: center, middle
 
-# Something was amiss
+# Lost in translation
 
 ???
 
-~~Both types of programs (the tax forms and the payroll calculator) were kind of similar.~~
-
-~~They would take some user input and send it through some often complicated pipeline of transformations to come up with the final result.~~
-
-~~(Actually most of the interactive programs work in such way.)~~
-
-~~The problem was in designing and implementing these pipelines. This is were we usually got lost.~~
-
-For some reason it felt more natural to design this calculations in a spreadsheet than in a programming language like Pascal, Ruby or JavaScript.
+For some reason it felt more natural to design those calculations in a spreadsheet than in a programming language like Pascal, Ruby or JavaScript.
 
 In fact, the HR employees would bring their test cases to us in spreadsheets!
 
-Sometimes we would use those spreadsheets as a blueprint for the calculations we were trying to implement in our program.
+Sometimes we would use those spreadsheets as blueprints for the calculations we were implementing in our program.
 
 But when you try to do this, you quickly realise that something gets lost in the translation.
 
@@ -128,6 +121,8 @@ This is how you create "programs" in spreadsheets:
 
 _The value of this cell (`C1`) is a sum of this cell here (`A1`) and this one over here (`B1`)_ .
 
+That's it.
+
 And the spreadsheet will "magically" satisfy this formula for you.
 You will not have to worry _when_ to update the cell or if it ever becomes out of date.
 Whenever any of the dependent cells change, it will **always** be up to date.
@@ -139,7 +134,7 @@ class: middle
 var a = 5
 var b = 7
 
-var c = a + b // 13
+var c = a + b // -> 13
 ```
 
 ???
@@ -151,11 +146,7 @@ If in our program we define two variables `a` and `b`, and then another one (`c`
 --
 
 ```javascript
-//...
-
 a = 35
-
-alert('c = ' + c)
 ```
 
 ???
@@ -166,6 +157,10 @@ the variable `c` will still hold the previous value: `13`.
 
 --
 
+```javascript
+alert('c = ' + c)
+```
+
 .center[![alert](images/alert.jpg)]
 
 ???
@@ -174,7 +169,7 @@ If we want `c` to equal `42` we would have to change it explicitly ourselves.
 
 This is how **imperative programming** works.
 
-A spreadsheet, on the other hand, is an example of a cell-based **dataflow** programming.
+A spreadsheet, on the other hand, is an example of cell-based **dataflow** programming.
 
 ---
 class: center, middle
@@ -187,9 +182,9 @@ _--Wikipedia_
 
 ???
 
-Here's how Wikipedia describes [dataflow programming][dataflow_programming]:
+Here's how Wikipedia describes **dataflow programming**:
 
-The idea of a _"directed graph of the data flowing between operations"_ seemed to me as something that should not be very hard to implement in any language.
+The idea of a **"directed graph of the data flowing between operations"** seemed to me as something that should not be very hard to implement in any language.
 
 I was kind of expecting that such libraries would already exist.
 
@@ -197,20 +192,18 @@ I looked at the functional reactive solutions in JavaScript and what I found was
 
 I was looking for a simple library that, like a spreadsheet, would allow me to describe my data as a graph of dependencies with formulas.
 
-I haven't found anything satisfying so I decided to see how hard it would be to create such a library.
+I haven't found anything satisfying so I decided to create such library myself.
 
-I named it `xcell`.
+I named it _xcell_.
 
 ---
 class: center, middle
 
 # xcell
 
-https://github.com/tomazy/xcell
-
 ???
 
-Using WDD (Wish Driven Development) I came up with a simple API that I'd like to use in order to describe the graph data and the operations:
+Using WDD (Wish Driven Development) I came up with a simple API to describe the graph data and the operations:
 
 ---
 class: middle
@@ -266,11 +259,7 @@ class: center, middle
 
 ???
 
-~~I'm not sure why dataflow programming is not more popular.~~
-
-~~RxJS and others get us closer to it but a price of learning all those operators can be a bit too high.~~
-
-`xcell` doesn't introduce a bunch of new concepts.
+_xcell_ doesn't introduce a bunch of new concepts.
 
 No action creators, no decorators, no `switchMap`, etc.
 
@@ -278,18 +267,22 @@ Just standard functions to describe what to do with your data, arrays for depend
 
 It can be used with any JS framework or with no framework at all. Client and server-side.
 
-It's still in its **infancy** and probably not production ready.
+It can be used as a **state management** solution with your favorite framework!
 
-But if you have some time - please give it a try and let me know what you think.
+It's still in its **infancy** and probably not production ready, but if you have some time - please give it a try and let me know what you think.
 
 ---
 class: center, middle
 
 # Thank you
 
-https://github.com/tomazy/xcell
+code: https://github.com/tomazy/xcell
 
-@tomazy
+slides: https://github.com/tomazy/xcell-slides
+
+examples: https://tomazy.github.io/xcell/
+
+Tomek Maszkowski, @tomazy
 
 [skp]: https://www.ksiega-podatkowa.pl/skp-firma/wyglad-programu
 [dataflow_programming]: https://en.wikipedia.org/wiki/Dataflow_programming
